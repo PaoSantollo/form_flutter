@@ -20,6 +20,10 @@ class MyApp extends StatelessWidget {
           'login': (BuildContext context) => LoginPage(),
           'home': (BuildContext contetx) => HomePage(),
         },
+        //para que toda la app sea morada
+        theme: ThemeData(
+          primaryColor: Colors.deepPurple,
+        ),
       ),
     );
   }

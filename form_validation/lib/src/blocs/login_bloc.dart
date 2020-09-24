@@ -1,6 +1,9 @@
 import 'dart:async';
 
-class LoginBloc {
+import 'package:form_validation/src/blocs/validators.dart';
+
+//mediante el login bloc se puede controlar cuando es valido o no algo que el usuario hizo
+class LoginBloc with Validators {
   final _emailController = StreamController<String>.broadcast();
 
   final _passwordController = StreamController<String>.broadcast();
@@ -8,8 +11,10 @@ class LoginBloc {
   //establecer los get/set
 
   //recuperar los datos del stream
-  Stream<String> get emailStream => _emailController.stream;
-  Stream<String> get passwordStream => _passwordController.stream;
+  Stream<String> get emailStream =>
+      _emailController.stream.transform(validarEmail);
+  Stream<String> get passwordStream =>
+      _passwordController.stream.transform(validarPassword);
 
   //insertar valores al stream
   Function(String) get changeEmail => _emailController.sink.add;
